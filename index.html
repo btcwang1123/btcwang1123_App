@@ -1,123 +1,187 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>我的 App 導覽</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Style -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>btcwang1123 · Apps</title>
+  <meta name="description" content="我的上架作品：停車百寶袋、Sudoku Battle 等精選 App。" />
+  <meta property="og:title" content="btcwang1123 · Apps" />
+  <meta property="og:description" content="我的上架作品：停車百寶袋、Sudoku Battle 等精選 App。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://btcwang1123.github.io/btcwang1123_App/" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      background: #f9fafc;
+    :root{
+      --bg: #0b1220; --fg: #e6eaf2; --muted:#9aa5b1; --card:#0f172a80;
+      --accent:#0ea5e9; --accent-2:#8b5cf6; --border:#1f2937;
     }
-    header {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 3rem 1rem;
-      text-align: center;
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f8fafc; --fg:#0f172a; --muted:#475569; --card:#ffffffcc; --accent:#0ea5e9; --accent-2:#8b5cf6; --border:#e2e8f0; }
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth}
+    body{font-family:Inter,'Noto Sans TC',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+      radial-gradient(1200px 700px at 10% -20%, #22d3ee33, transparent 60%),
+      radial-gradient(1200px 700px at 110% 0%, #a78bfa33, transparent 60%),
+      var(--bg); color:var(--fg);}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(10,10,15,.85), rgba(10,10,15,.55) 60%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    @media (prefers-color-scheme: light){ .nav{background:linear-gradient(180deg, #ffffffdd, #ffffffaa 60%, transparent)} }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.2px}
+    .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 6px 20px #0ea5e977}
+    .nav-links{display:flex;gap:20px;align-items:center}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{opacity:1}
+    .ghost-btn{border:1px solid var(--border);padding:8px 12px;border-radius:12px}
+    .toggle{border:1px solid var(--border);padding:8px 12px;border-radius:12px;background:transparent;cursor:pointer;color:inherit}
+    .hamburger{display:none}
+    @media (max-width:768px){
+      .nav-links{display:none}
+      .hamburger{display:block;border:1px solid var(--border);padding:8px 10px;border-radius:12px;background:transparent;color:inherit}
+      #mobileMenu{display:none;padding:12px 0;border-top:1px solid var(--border)}
+      #mobileMenu a{display:block;padding:10px 0}
     }
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      background: white;
-      border-radius: 1rem;
-      margin: 2rem 0;
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-    section:hover { transform: translateY(-5px); }
-    section img {
-      flex: 1 1 300px;
-      max-width: 300px;
-      border-radius: 0.5rem;
-    }
-    .content {
-      flex: 2 1 400px;
-      padding: 1rem 2rem;
-    }
-    .content h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: #222;
-    }
-    .content p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-      color: #555;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      border-radius: 2rem;
-      background: #667eea;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .btn:hover { background: #4a5bdc; }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      background: #222;
-      color: #bbb;
-    }
+    /* Hero */
+    .hero{padding:64px 0 24px}
+    .hero .wrap{display:grid;gap:24px;grid-template-columns:1.2fr .8fr;align-items:center}
+    @media (max-width:900px){ .hero .wrap{grid-template-columns:1fr} }
+    .title{font-size:clamp(28px,5vw,46px);line-height:1.1;margin:0}
+    .subtitle{color:var(--muted);margin:10px 0 20px;font-size:1.05rem}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;border:1px solid var(--border);font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;border:none;box-shadow:0 10px 30px #0ea5e955}
+    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;font-size:.85rem;color:var(--muted)}
+    .glass{background:linear-gradient(180deg, var(--card), transparent 120%);border:1px solid var(--border);border-radius:18px;padding:22px}
+    .stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}
+    .stat{display:flex;flex-direction:column}
+    .stat .k{font-weight:800;font-size:1.3rem}
+    .cover{aspect-ratio:4/3;border-radius:16px;background:
+      radial-gradient(400px 200px at 80% 0%, #22d3ee55, transparent 60%),
+      radial-gradient(300px 250px at 0% 100%, #8b5cf655, transparent 60%),
+      linear-gradient(135deg,#0b1220,#111827);border:1px solid var(--border);
+      box-shadow:0 20px 60px #11182766;position:relative;overflow:hidden}
+    @media (prefers-color-scheme: light){ .cover{background:linear-gradient(135deg,#eef2ff,#e0f2fe)} }
+    .floating{position:absolute;inset:auto 0 0 auto;right:-30px;bottom:-30px;width:280px;height:280px;border-radius:30px;background:linear-gradient(135deg,#22d3ee,#8b5cf6);filter:blur(60px);opacity:.35}
+    /* Grid apps */
+    .section{padding:28px 0 64px}
+    .sec-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .cards{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 6;background:linear-gradient(180deg,var(--card),transparent 120%);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.25s transform,.25s box-shadow}
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px #00000033}
+    @media (max-width:900px){ .card{grid-column:span 12} }
+    .thumb{height:220px;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:800;letter-spacing:.8px}
+    .card-body{padding:18px}
+    .card-title{margin:0 0 6px;font-size:1.3rem}
+    .card-desc{color:var(--muted);margin:0 0 14px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);font-size:.9rem}
+    .footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🚀 我的 App 導覽</h1>
-    <p>探索我打造的作品，每一個都充滿熱情與巧思</p>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./">
+        <span class="logo"></span>
+        <span>btcwang1123</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#apps">Apps</a>
+        <a class="ghost-btn" href="mailto:btcwang@gmail.com">聯絡我</a>
+        <button id="toggleTheme" class="toggle" aria-label="切換主題">🌓</button>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="開啟選單">☰</button>
+    </div>
+    <div class="container" id="mobileMenu">
+      <a href="#apps">Apps</a>
+      <a href="mailto:btcwang@gmail.com">聯絡我</a>
+      <a href="#" id="mobileTheme">切換主題</a>
+    </div>
   </header>
 
-  <main>
-    <!-- 停車百寶袋 -->
-    <section>
-      <img src="https://i.imgur.com/tCcUgwZ.jpeg" alt="停車百寶袋">
-      <div class="content">
-        <h2>🚗 停車百寶袋</h2>
-        <p>全台即時停車位查詢神器！快速找到空位，節省時間、安心停車。  
-        支援即時剩餘車位、地圖導航與收藏常用停車場。</p>
-        <a class="btn" href="app1/">了解更多</a>
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <span class="badge">Indie Dev · iOS/Android/Backend</span>
+        <h1 class="title">讓實用與樂趣並行的 App</h1>
+        <p class="subtitle">從日常停車到腦力對戰，我用細節打磨體驗；用工程實現想像。</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#apps">瀏覽所有 Apps</a>
+          <a class="btn" href="mailto:btcwang@gmail.com">商務合作</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="k">2+</span><span class="muted">已上架 App</span></div>
+          <div class="stat"><span class="k">∞</span><span class="muted">持續迭代</span></div>
+        </div>
       </div>
-    </section>
-
-    <!-- Sudoku Battle -->
-    <section>
-      <img src="https://i.imgur.com/axUDyAg.jpeg" alt="Sudoku Battle">
-      <div class="content">
-        <h2>🧩 Sudoku Battle</h2>
-        <p>全球即時數獨對戰，挑戰高手，體驗智慧巔峰！  
-        動態難度、排位系統、即時配對，讓你一局接一局停不下來。</p>
-        <a class="btn" href="app2/">了解更多</a>
+      <div class="glass">
+        <div class="cover">
+          <div class="floating"></div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    &copy; 2025 btcwang1123. All Rights Reserved.
+  <section id="apps" class="section">
+    <div class="container">
+      <div class="sec-title">
+        <h2 style="margin:0">精選 Apps</h2>
+        <a class="pill" href="#apps">查看全部 →</a>
+      </div>
+
+      <!-- App: 停車百寶袋 -->
+      <article class="card">
+        <div class="thumb">PARK · KING</div>
+        <div class="card-body">
+          <h3 class="card-title">🚗 停車百寶袋</h3>
+          <p class="card-desc">全台即時停車位查詢神器。少繞路、多一分安心。</p>
+          <div class="cta-row">
+            <a class="btn primary" href="app1/">了解更多</a>
+            <a class="btn" href="app1/app-ads.txt" target="_blank" rel="noopener">app-ads.txt</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- App: Sudoku Battle -->
+      <article class="card">
+        <div class="thumb" style="background:linear-gradient(135deg,#1d4ed8,#9333ea)">SUDOKU · BATTLE</div>
+        <div class="card-body">
+          <h3 class="card-title">🧩 Sudoku Battle</h3>
+          <p class="card-desc">全球即時對戰 · MMR 排位 · 動態難度。高手過招，一決高下！</p>
+          <div class="cta-row">
+            <a class="btn primary" href="app2/">了解更多</a>
+            <a class="btn" href="app2/app-ads.txt" target="_blank" rel="noopener">app-ads.txt</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2025 btcwang1123 · All Rights Reserved
   </footer>
+
+  <script>
+    // 主題切換（記憶）
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem('theme');
+    if(saved){ document.documentElement.dataset.theme = saved; }
+    function toggleTheme(){
+      const cur = document.documentElement.dataset.theme || (prefersDark ? 'dark':'light');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
+    }
+    document.getElementById('toggleTheme').onclick = toggleTheme;
+    document.getElementById('mobileTheme').onclick = (e)=>{e.preventDefault();toggleTheme();};
+
+    // 手機選單
+    const ham = document.getElementById('hamburger');
+    const mm = document.getElementById('mobileMenu');
+    if(ham){ham.addEventListener('click',()=>{ mm.style.display = mm.style.display==='block' ? 'none' : 'block'; });}
+  </script>
 </body>
 </html>
